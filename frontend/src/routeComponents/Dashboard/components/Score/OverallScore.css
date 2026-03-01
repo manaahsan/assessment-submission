@@ -1,0 +1,58 @@
+.overall-card {
+  background-color: var(--card-bg, #ffffff);
+  border: 1px solid var(--card-border, #e5e7eb);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-card, 0 4px 8px rgba(0, 0, 0, 0.05));
+  transition: box-shadow 0.3s ease;
+  animation: slide-up 0.3s ease-in-out;
+}
+
+.overall-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.overall-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--card-foreground, #111827);
+  margin-bottom: 16px;
+}
+
+.overall-body {
+  text-align: center;
+}
+
+.overall-percentage {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.score-green {
+  color: #16a34a;
+}
+
+.score-amber {
+  color: #d97706; 
+}
+
+.score-red {
+  color: #ef4444;
+}
+
+.overall-score {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: var(--muted-foreground, #6b7280);
+}
+
+.overall-normalized {
+  margin-top: 4px;
+  font-size: 0.75rem; 
+  color: var(--muted-foreground, #6b7280);
+}
+
+@keyframes slide-up {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
