@@ -1,0 +1,51 @@
+.gauge-card {
+  background-color: var(--card-bg, #ffffff);
+  border: 1px solid var(--card-border, #e5e7eb);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-card, 0 4px 8px rgba(0,0,0,0.05));
+  transition: box-shadow 0.3s ease;
+  animation: slide-up 0.3s ease-in-out;
+}
+
+.gauge-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.gauge-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--card-foreground, #111827);
+  margin-bottom: 16px;
+}
+
+.gauge-chart-container {
+  height: 192px;
+  position: relative;
+}
+
+.gauge-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.gauge-percentage {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: var(--card-foreground, #111827);
+}
+
+.gauge-label {
+  font-size: 0.75rem;
+  color: var(--muted-foreground, #6b7280);
+}
+
+@keyframes slide-up {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
