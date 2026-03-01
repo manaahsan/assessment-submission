@@ -1,26 +1,25 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import "./LoadingState.css";
 
-const LoadingState = () => {
+const Loading = () => {
   return (
     <div className="loading-container">
-      <Skeleton className="skeleton skeleton-large" />
-      
+      <div className="skeleton skeleton-large" />
+
       <div className="loading-grid">
-        <Skeleton className="skeleton skeleton-medium" />
-        <Skeleton className="skeleton skeleton-medium" />
+        <div className="skeleton skeleton-medium" />
+        <div className="skeleton skeleton-medium" />
       </div>
 
-      <Skeleton className="skeleton skeleton-xlarge" />
-      <Skeleton className="skeleton skeleton-large" />
+      <div className="skeleton skeleton-xlarge" />
+      <div className="skeleton skeleton-large" />
 
       <div className="loading-stack">
-        <Skeleton className="skeleton skeleton-stack-item" />
-        <Skeleton className="skeleton skeleton-stack-item" />
-        <Skeleton className="skeleton skeleton-stack-item" />
+        <div className="skeleton skeleton-stack-item" />
+        <div className="skeleton skeleton-stack-item" />
+        <div className="skeleton skeleton-stack-item" />
       </div>
     </div>
   );
 };
 
-export default LoadingState;
+export default Loading;
