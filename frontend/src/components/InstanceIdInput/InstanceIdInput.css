@@ -1,0 +1,71 @@
+.instance-card {
+  background-color: var(--card-bg, #ffffff);
+  border: 1px solid var(--card-border, #e5e7eb);
+  border-radius: 16px;
+  padding: 24px;
+  animation: fade-in 0.3s ease-in-out;
+  box-shadow: var(--shadow-card, 0 4px 8px rgba(0, 0, 0, 0.05));
+  transition: box-shadow 0.3s ease;
+}
+
+.instance-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.instance-title {
+  font-size: 1.125rem; 
+  color: var(--card-foreground, #111827);
+  margin-bottom: 4px;
+}
+
+.instance-subtitle {
+  font-size: 0.875rem;
+  color: var(--muted-foreground, #6b7280);
+  margin-bottom: 16px;
+}
+
+.instance-form {
+  display: flex;
+  gap: 12px;
+}
+
+.instance-input {
+  flex: 1;
+  font-family: monospace;
+  font-size: 0.875rem;
+  height: 44px;
+  border-radius: 8px;
+  padding: 0 12px;
+}
+
+.instance-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 8px;
+}
+
+.icon {
+  margin-right: 8px;
+  height: 16px;
+  width: 16px;
+}
+
+.icon-spin {
+  margin-right: 8px;
+  height: 16px;
+  width: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
