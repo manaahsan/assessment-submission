@@ -1,0 +1,30 @@
+.export-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.export-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  border: 1px solid #6b7280;
+  background-color: transparent;
+  color: #111827;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.export-button:hover {
+  background-color: #6b7280;
+  color: #ffffff;
+}
+
+.icon {
+  width: 16px; 
+  height: 16px;
+  margin-right: 6px;
+}
