@@ -61,13 +61,13 @@ const ExportControls = ({ data }: ExportControlsProps) => {
   return (
     <div className="export-controls">
       <button className="export-button" onClick={exportJSON}>
-        <Download className="icon" /> JSON
+        <Download  size={16} color="gray" /> JSON
       </button>
       <button className="export-button" onClick={copyToClipboard}>
-        <Copy className="icon" /> Copy
+        <Copy  size={16} color="gray" /> Copy
       </button>
       <button className="export-button" onClick={exportSummary}>
-        <FileText className="icon" /> Summary
+        <FileText  size={16} color="gray" /> Summary
       </button>
     </div>
   );
