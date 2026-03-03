@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Loader2 } from "lucide-react";
+import { Search, Loader2, Sparkles } from "lucide-react";
 import "./InstanceIdInput.css";
 
 interface InstanceIdInputProps {
@@ -9,6 +9,7 @@ interface InstanceIdInputProps {
 
 const InstanceIdInput = ({ onFetch, isLoading }: InstanceIdInputProps) => {
   const [inputValue, setInputValue] = useState("d1111111-1111-1111-1111-111111111111");
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,33 +18,82 @@ const InstanceIdInput = ({ onFetch, isLoading }: InstanceIdInputProps) => {
     }
   };
 
+  const handleClear = () => {
+    setInputValue("");
+  };
+
   return (
-    <div className="instance-card">
-      <h2 className="instance-title">Load Assessment Results</h2>
-      <p className="instance-subtitle">
-        Paste your assessment instance ID to view detailed results
-      </p>
-      <form onSubmit={handleSubmit} className="instance-form">
-        <input
-          placeholder="Enter Assessment Instance ID..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          className="instance-input"
-          disabled={isLoading}
-        />
-        <button
-          type="submit"
-          disabled={isLoading || !inputValue.trim()}
-          className="instance-button"
-        >
-          {isLoading ? (
-            <Loader2 className="icon-spin" />
-          ) : (
-            <Search className="icon" />
-          )}
-          {isLoading ? "Loading..." : "Fetch Results"}
-        </button>
-      </form>
+    <div className="instance-container">
+      <div className="instance-card">
+        <div className="instance-header">
+          <div className="instance-icon-wrapper">
+            <Sparkles className="instance-icon" />
+          </div>
+          <div className="instance-text">
+            <h2 className="instance-title">Load Assessment Results</h2>
+            <p className="instance-subtitle">
+              Enter your assessment instance ID to retrieve detailed analytics
+            </p>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="instance-form">
+          <div className={`input-wrapper ${isFocused ? 'focused' : ''} ${inputValue ? 'has-value' : ''}`}>
+            <div className="input-icon">
+              <Search size={18} />
+            </div>
+            <input
+              type="text"
+              placeholder="e.g., d1111111-1111-1111-1111-111111111111"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              className="instance-input"
+              disabled={isLoading}
+              spellCheck={false}
+            />
+            {inputValue && !isLoading && (
+              <button 
+                type="button" 
+                className="clear-button" 
+                onClick={handleClear}
+                aria-label="Clear input"
+              >
+                ×
+              </button>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            disabled={isLoading || !inputValue.trim()}
+            className={`instance-button ${isLoading ? 'loading' : ''} ${!inputValue.trim() ? 'disabled' : ''}`}
+          >
+            <div className="button-content">
+              {isLoading ? (
+                <>
+                  <Loader2 className="icon-spin" />
+                  <span>Retrieving...</span>
+                </>
+              ) : (
+                <>
+                  <Search className="icon" color="white" />
+                  <span>Fetch Results</span>
+                </>
+              )}
+            </div>
+            <div className="button-shine" />
+          </button>
+        </form>
+
+        <div className="instance-footer">
+          <div className="hint">
+            <span className="hint-dot" />
+            <span>UUID format required</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
