@@ -1,5 +1,8 @@
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import { CHART_COLORS } from "../../../../lib/helpers/chart-colors";
+import { useEffect, useState } from "react";
+
+import "./CompletionRing.css";
+import { CheckLine } from "lucide-react";
+import { CHART_COLORS } from "../../../../lib/helpers";
 
 interface CompletionRingProps {
   answered: number;
@@ -7,49 +10,154 @@ interface CompletionRingProps {
 }
 
 const CompletionRing = ({ answered, total }: CompletionRingProps) => {
+  const [animatedPercentage, setAnimatedPercentage] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
   const percentage = total > 0 ? Math.round((answered / total) * 100) : 0;
-  const data = [
-    { name: "Answered", value: answered },
-    { name: "Remaining", value: total - answered },
-  ];
+  const remaining = total - answered;
+
+  // Animate percentage on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimatedPercentage(percentage);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [percentage]);
+
+  // SVG calculations
+  const radius = 52;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset =
+    circumference - (animatedPercentage / 100) * circumference;
+
+  // Determine status color based on percentage
+  const getStatusColor = () => {
+    if (percentage >= 80) return "#10b981"; // emerald
+    if (percentage >= 50) return "#073c92"; // indigo
+    return "#f59e0b"; // amber
+  };
+
+  const statusColor = getStatusColor();
 
   return (
-    <div className="bg-card rounded-xl border p-6 animate-slide-up transition-shadow duration-300 hover:shadow-md" style={{ boxShadow: "var(--shadow-card)" }}>
-      <h3 className="text-lg font-semibold text-card-foreground mb-4">Completion Progress</h3>
-      <div className="flex items-center justify-center gap-6">
-        <div className="w-40 h-40 relative">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                innerRadius={45}
-                outerRadius={65}
-                startAngle={90}
-                endAngle={-270}
-                dataKey="value"
-                stroke="none"
+    <div
+      className="completion-card"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Background glow effect */}
+      <div
+        className="completion-glow"
+        style={{ opacity: isHovered ? 0.6 : 0.3 }}
+      />
+
+      <div className="completion-header">
+        <div className="completion-icon">
+          <CheckLine />
+        </div>
+        <h3 className="completion-title">Completion Progress</h3>
+      </div>
+
+      <div className="completion-content">
+        {/* Animated SVG Ring */}
+        <div className="completion-chart-wrapper">
+          <svg className="progress-ring" viewBox="0 0 120 120">
+            {/* Definitions for gradients */}
+            <defs>
+              <linearGradient
+                id="progressGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
               >
-                <Cell fill={CHART_COLORS.answered} />
-                <Cell fill="hsl(210, 40%, 94%)" />
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-2xl font-bold text-card-foreground">{percentage}%</span>
+                <stop offset="0%" stopColor={statusColor} />
+                <stop offset="100%" stopColor={CHART_COLORS.answered} />
+              </linearGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            {/* Background track */}
+            <circle
+              className="progress-ring-track"
+              cx="60"
+              cy="60"
+              r={radius}
+              fill="none"
+              stroke="hsl(210, 40%, 94%)"
+              strokeWidth="10"
+            />
+
+            {/* Progress arc with animation */}
+            <circle
+              className="progress-ring-arc"
+              cx="60"
+              cy="60"
+              r={radius}
+              fill="none"
+              stroke="url(#progressGradient)"
+              strokeWidth="10"
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={strokeDashoffset}
+              transform="rotate(-90 60 60)"
+              filter={isHovered ? "url(#glow)" : undefined}
+            />
+
+            {/* Decorative dots at 0%, 25%, 50%, 75%, 100% */}
+            {[0, 25, 50, 75, 100].map((pos, i) => {
+              const angle = (pos / 100) * 360 - 90;
+              const x = 60 + radius * Math.cos((angle * Math.PI) / 180);
+              const y = 60 + radius * Math.sin((angle * Math.PI) / 180);
+              return (
+                <circle
+                  key={i}
+                  cx={x}
+                  cy={y}
+                  r="3"
+                  fill={pos <= animatedPercentage ? statusColor : "#d1d5db"}
+                  className="progress-dot"
+                />
+              );
+            })}
+          </svg>
+
+          {/* Center content */}
+          <div className="completion-center">
+            <div className="completion-center-content">
+              <span
+                className="completion-percentage"
+                style={{ color: statusColor }}
+              >
+                {animatedPercentage}%
+              </span>
+              <span className="completion-label">Complete</span>
+            </div>
           </div>
         </div>
-        <div className="text-sm text-muted-foreground space-y-1">
-          <p><span className="font-semibold text-card-foreground">{answered}</span> of <span className="font-semibold text-card-foreground">{total}</span> questions answered</p>
-          <div className="flex items-center gap-2 mt-2">
-            <span className="w-3 h-3 rounded-full inline-block" style={{ backgroundColor: CHART_COLORS.answered }} />
-            <span>Answered</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full inline-block bg-muted" />
-            <span>Remaining</span>
-          </div>
+      </div>
+      <div className="completion-footer">
+        <div
+          className="status-pill"
+          style={{
+            backgroundColor: `${statusColor}15`,
+            color: statusColor,
+            borderColor: `${statusColor}30`,
+          }}
+        >
+          {percentage === 100
+            ? "All questions completed!"
+            : percentage >= 80
+              ? " Almost there!"
+              : percentage >= 50
+                ? " Good progress"
+                : " Let's get started"}
         </div>
       </div>
     </div>
