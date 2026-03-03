@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import "./OverallScore.css";
+import { getScoreConfig } from "../../../../lib/helpers";
+
 
 interface OverallScoreProps {
   percentage: number;
@@ -60,42 +62,42 @@ const OverallScore = ({ percentage, score, maxScore }: OverallScoreProps) => {
     return () => clearInterval(timer);
   }, [isVisible, percentage, score]);
 
-const getScoreConfig = (pct: number) => {
-  if (pct >= 80)
-    return {
-      color: "#0B3C8A", 
-      gradient: "linear-gradient(135deg, #073C92 0%, #2563eb 100%)",
-      label: "Excellent",
-      icon: "🏆",
-      bgGlow: "rgba(7, 60, 146, 0.35)",
-    };
+// const getScoreConfig = (pct: number) => {
+//   if (pct >= 80)
+//     return {
+//       color: "#0B3C8A", 
+//       gradient: "linear-gradient(135deg, #073C92 0%, #2563eb 100%)",
+//       label: "Excellent",
+//       icon: "🏆",
+//       bgGlow: "rgba(7, 60, 146, 0.35)",
+//     };
 
-  if (pct >= 60)
-    return {
-      color: "#1E40AF",
-      gradient: "linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)",
-      label: "Good",
-      icon: "⭐",
-      bgGlow: "rgba(37, 99, 235, 0.30)",
-    };
+//   if (pct >= 60)
+//     return {
+//       color: "#1E40AF",
+//       gradient: "linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)",
+//       label: "Good",
+//       icon: "⭐",
+//       bgGlow: "rgba(37, 99, 235, 0.30)",
+//     };
 
-  if (pct >= 40)
-    return {
-      color: "#334155",
-      gradient: "linear-gradient(135deg, #1E293B 0%, #334155 100%)",
-      label: "Average",
-      icon: "📊",
-      bgGlow: "rgba(51, 65, 85, 0.30)",
-    };
+//   if (pct >= 40)
+//     return {
+//       color: "#334155",
+//       gradient: "linear-gradient(135deg, #1E293B 0%, #334155 100%)",
+//       label: "Average",
+//       icon: "📊",
+//       bgGlow: "rgba(51, 65, 85, 0.30)",
+//     };
 
-  return {
-    color: "#0f172a",
-    gradient: "linear-gradient(135deg, hsl(222 47% 11%) 0%, #1e293b 100%)",
-    label: "Needs Work",
-    icon: "🎯",
-    bgGlow: "rgba(15, 23, 42, 0.35)",
-  };
-};
+//   return {
+//     color: "#0f172a",
+//     gradient: "linear-gradient(135deg, hsl(222 47% 11%) 0%, #1e293b 100%)",
+//     label: "Needs Work",
+//     icon: "🎯",
+//     bgGlow: "rgba(15, 23, 42, 0.35)",
+//   };
+// };
   const config = getScoreConfig(percentage);
   const circumference = 2 * Math.PI * 90;
   const strokeDashoffset =
