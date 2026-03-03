@@ -31,52 +31,6 @@ const Component = () => {
     <Loading />;
   }
   return (
-    // <main className="assessment-main-container">
-    //   <InstanceIdInput onFetch={handleFetch} isLoading={isLoading} />
-
-    //   {data && (
-    //     <div className="assessment-content">
-    //       <div className="top-row">
-    //         <div className="info-section">
-    //           <InfoCard data={data} />
-    //         </div>
-    //         <div className="completion-section">
-    //           <CompletionRing
-    //             answered={data?.answered_questions}
-    //             total={data?.total_questions}
-    //           />
-    //         </div>
-    //       </div>
-    //       <div className="metrics-row">
-    //         <OverallScore
-    //           percentage={data?.scores.percentage}
-    //           score={data?.scores.total_score}
-    //           maxScore={data?.scores.max_score}
-    //         />
-    //         <GaugeChart percentage={data?.scores.percentage} />
-    //       </div>
-    //       <div className="middle-section">
-    //         <ScoresByElement elementScores={data?.element_scores_array} />
-
-    //         <div className="charts-row">
-    //           <BarChartView questions={data?.element_scores_array} />
-    //           <RadarChartView elementScores={data?.element_scores_array} />
-    //         </div>
-    //       </div>
-
-    //       <div className="bottom-split">
-    //         <QuestionBreakdown
-    //           questions={data?.element_scores_array?.flatMap(
-    //             (e) => e.question_answers,
-    //           )}
-    //         />
-    //         <InsightsSection insights={data?.insights} />
-    //       </div>
-    //     </div>
-    //   )}
-
-    //   {!data && !isLoading  && <NoResults />}
-    // </main>
     <main className="assessment-main-container">
       <InstanceIdInput onFetch={handleFetch} isLoading={isLoading} />
       

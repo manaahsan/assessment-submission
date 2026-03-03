@@ -2,12 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import "./RadarChartView.css";
 import { CHART_COLORS } from "../../../../lib/helpers";
 import { Layers } from "lucide-react";
-
-interface ElementScore {
-  element: string;
-  percentage: number;
-  max_score: number;
-}
+import { ElementScore } from "../../../../lib/types/assessment";
 
 interface RadarChartViewProps {
   elementScores: ElementScore[];
@@ -20,10 +15,10 @@ const RadarChartView = ({ elementScores }: RadarChartViewProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const data = elementScores
-    .filter((e) => e.max_score > 0)
+    .filter((e) => e.scores.max_score > 0)
     .map((e) => ({
       element: e.element,
-      score: e.percentage,
+      score: e.scores.percentage,
       fullMark: 100,
     }));
 

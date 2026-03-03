@@ -10,10 +10,6 @@ interface Props {
 const InfoCard = ({ data }: Props) => {
   return (
     <section className="assessment-hero">
-      {/* Ambient Background Elements */}
-      {/* <div className="hero-glow hero-glow-1" />
-      <div className="hero-glow hero-glow-2" /> */}
-
       <div className="assessment-card">
         <div className="assessment-card-header">
           <div className="assessment-card-info">

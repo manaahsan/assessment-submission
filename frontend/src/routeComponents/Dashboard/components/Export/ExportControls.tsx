@@ -2,6 +2,7 @@ import { Download, Copy, FileText } from "lucide-react";
 import toast from 'react-hot-toast';
 import "./ExportControls.css";
 import { AssessmentResult } from "../../../../lib/types/assessment";
+import ThemeToggle from "../../../../components/shared/Toggle/ThemeToggle";
 
 interface ExportControlsProps {
   data: AssessmentResult;
@@ -69,6 +70,7 @@ const ExportControls = ({ data }: ExportControlsProps) => {
       <button className="export-button" onClick={exportSummary}>
         <FileText  size={16} color="gray" /> Summary
       </button>
+      <ThemeToggle />
     </div>
   );
 };

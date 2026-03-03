@@ -15,21 +15,69 @@ body {
 
 #root {
   min-height: 100vh;
-  --gradient-primary: linear-gradient(
-    135deg,
-    hsl(222 47% 11%),
-    rgb(7, 60, 146)
-  );
+}
+body.light {
+  /* Surface */
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(255, 255, 255, 0.5);
+
+  /* Text */
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+
+  /* Input */
+  --input-bg: rgba(255, 255, 255, 0.8);
+  --input-border: #e5e7eb;
+  --input-border-hover: #d1d5db;
+  --input-focus: #6366f1;
+
+  /* Button */
+  --button-disabled-bg: #e5e7eb;
+  --button-disabled-text: #9ca3af;
+
+  /* Clear button */
+  --clear-bg: #e5e7eb;
+  --clear-hover: #d1d5db;
+
+  /* Hint */
+  --hint-dot: #10b981;
+  --gradient-primary: linear-gradient(135deg, #2563eb, #1e40af);
   --primary-foreground: #ffffff;
+  --text-primary-foreground: #ffffff;
+  --subtitle-color: rgba(255, 255, 255, 0.75);
 }
 
+body.dark {
+  --text-primary: #f9fafb;
+  --text-primary-foreground: #f9fafb;
+  --text-secondary: #9ca3af;
+  --gradient-primary: linear-gradient(135deg, hsl(222 47% 11%), rgb(0, 0, 0));
+  --subtitle-color: rgba(255, 255, 255, 0.75);
+  --card-bg: rgba(17, 24, 39, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+
+  --input-bg: rgba(31, 41, 55, 0.8);
+  --input-border: #374151;
+  --input-border-hover: #4b5563;
+  --input-focus: #818cf8;
+
+  --button-disabled-bg: #374151;
+  --button-disabled-text: #6b7280;
+
+  --clear-bg: #374151;
+  --clear-hover: #4b5563;
+
+  --hint-dot: #10b981;
+}
 .assessment-main-container {
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
   padding: 20px;
   background: #f8fafc;
-  min-height: 100vh;
 }
 
 .assessment-content {
@@ -38,7 +86,6 @@ body {
   gap: 20px;
 }
 
-/* TOP ROW: InfoCard + CompletionRing */
 .top-row {
   display: grid;
   grid-template-columns: 1fr 280px;
@@ -121,7 +168,7 @@ body {
 
 .bottom-split > * {
   min-width: 0;
-  max-height: 500px;
+  /* max-height: 500px; */
   overflow-y: auto;
 }
 
@@ -130,15 +177,15 @@ body {
   .analytics-row {
     grid-template-columns: 1fr 1fr; /* Scores + BarChart | Radar */
   }
-  
+
   .analytics-scores {
     grid-column: 1;
   }
-  
+
   .analytics-charts {
     grid-column: 2;
   }
-  
+
   .analytics-radar {
     grid-column: 1 / -1; /* Full width below */
     max-height: 350px;
@@ -149,7 +196,7 @@ body {
   .top-row {
     grid-template-columns: 1fr;
   }
-  
+
   .completion-section {
     max-width: 400px;
     margin: 0 auto;
@@ -161,17 +208,17 @@ body {
     grid-template-columns: 1fr; /* Stack all */
     max-height: none;
   }
-  
+
   .analytics-scores > *,
   .analytics-charts > *,
   .analytics-radar > * {
     max-height: 400px;
   }
-  
+
   .bottom-split {
     grid-template-columns: 1fr; /* Stack bottom */
   }
-  
+
   .bottom-split > * {
     max-height: none;
   }
@@ -185,7 +232,7 @@ body {
   .metrics-row {
     grid-template-columns: 1fr;
   }
-  
+
   .metrics-row > * {
     max-height: none;
   }

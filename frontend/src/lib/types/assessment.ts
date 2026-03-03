@@ -48,6 +48,7 @@ export interface QuestionBreakdown {
 export interface Insight {
   type: "warning" | "positive" | "info";
   message: string;
+  positive: boolean
 }
 
 export interface AssessmentResult {
