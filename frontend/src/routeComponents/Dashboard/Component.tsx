@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import InstanceIdInput from "../../components/InstanceIdInput/InstanceIdInput";
-import Loading from "../../components/shared/Loading/Loading";
+
 
 import { useAssessmentDetails } from "./hooks";
 
@@ -14,25 +14,25 @@ import RadarChartView from "./components/charts/RadarChartView";
 import QuestionBreakdown from "./components/Question/QuestionBreakdown";
 import InsightsSection from "./components/InsightsSection/InsightsSection";
 import InfoCard from "./components/Card/InfoCard";
+import { Loading } from "../../components/shared/Loading/Loading";
 
 const Component = () => {
-  const [instanceId, setInstanceId] = useState(
-""
-  );
+  const [instanceId, setInstanceId] = useState("");
   const { data, isLoading } = useAssessmentDetails(instanceId);
 
   const handleFetch = useCallback(async (id: string) => {
     setInstanceId(id);
   }, []);
-
-  if (isLoading) {
-    return <Loading />;
-  }
+console.log(isLoading)
   return (
     <main className="assessment-main-container">
       <InstanceIdInput onFetch={handleFetch} isLoading={isLoading} />
-      
-      {data && (
+      {isLoading && (
+        <div className="section-loading">
+          <Loading />
+        </div>
+      )}
+      {data && !isLoading && (
         <div className="assessment-content">
           {/* TOP ROW: InfoCard + CompletionRing */}
           <div className="top-row">
@@ -73,7 +73,9 @@ const Component = () => {
           {/* BOTTOM SECTION: Side-by-Side */}
           <div className="bottom-split">
             <QuestionBreakdown
-              questions={data?.element_scores_array?.flatMap(e => e.question_answers)}
+              questions={data?.element_scores_array?.flatMap(
+                (e) => e.question_answers,
+              )}
             />
             <InsightsSection insights={data?.insights} />
           </div>

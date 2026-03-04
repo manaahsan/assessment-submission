@@ -228,7 +228,7 @@ color: var(--text-primary);
 }
 
 .instance-button.loading {
-  background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+  background: var(--gradient-primary);
   cursor: wait;
 }
 
