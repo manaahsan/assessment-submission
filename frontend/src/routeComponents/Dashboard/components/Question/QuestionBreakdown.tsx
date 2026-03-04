@@ -33,8 +33,6 @@ const QuestionBreakdown = ({ questions }: QuestionBreakdownProps) => {
   const [filter, setFilter] = useState<QuestionFilter>("all");
   const [sort, setSort] = useState<SortOption>("default");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedQuestion, setSelectedQuestion] =
-    useState<QuestionAnswer | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
   const listRef = useRef<HTMLDivElement>(null);
@@ -294,7 +292,7 @@ const QuestionBreakdown = ({ questions }: QuestionBreakdownProps) => {
               <button
                 key={q.question_id}
                 data-index={i}
-                onClick={() => setSelectedQuestion(q)}
+                // onClick={() => setSelectedQuestion(q)}
                 className={`qb-item ${isVisible ? "visible" : ""}`}
                 style={{ "--item-index": i } as React.CSSProperties}
               >
