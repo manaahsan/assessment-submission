@@ -82,24 +82,6 @@ const InfoCard = ({ data }: Props) => {
             <ExportControls data={data} />
           </div>
         </div>
-
-        {/* Bottom Stats Bar */}
-        {/* <div className="card-stats-bar">
-          <div className="stat-item">
-            <span className="stat-value">12</span>
-            <span className="stat-label">Elements</span>
-          </div>
-          <div className="stat-divider" />
-          <div className="stat-item">
-            <span className="stat-value">85%</span>
-            <span className="stat-label">Completion</span>
-          </div>
-          <div className="stat-divider" />
-          <div className="stat-item">
-            <span className="stat-value">4.2</span>
-            <span className="stat-label">Avg Score</span>
-          </div>
-        </div> */}
       </div>
     </section>
   );

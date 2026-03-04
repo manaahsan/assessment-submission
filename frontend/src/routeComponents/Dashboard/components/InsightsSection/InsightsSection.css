@@ -1,6 +1,6 @@
 /* InsightsSection.css */
 .insights-card {
-  background: var(--bg-card);
+  background: var(--card-bg);
   backdrop-filter: var(--backdrop-blur);
   border: 1px solid var(--border-secondary);
   border-radius: 24px;
@@ -31,7 +31,7 @@
 .insights-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+background: var(--gradient-primary);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -49,7 +49,7 @@
 
 .insights-subtitle {
   font-size: 0.875rem;
-  color: var(--text-tertiary);
+  color: #6b7280;
   margin: 4px 0 0 0;
 }
 
@@ -84,7 +84,8 @@
   z-index: 1;
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--text-primary);
+  /* color: var(--text-primary); */
+  rotate: 90deg;
 }
 
 .score-label {
@@ -148,6 +149,7 @@
   justify-content: center;
   flex-shrink: 0;
   transition: transform 0.3s ease;
+  background: var();
 }
 
 .insight-item:hover .insight-icon-wrapper {

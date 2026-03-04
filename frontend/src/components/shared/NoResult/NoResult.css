@@ -15,7 +15,7 @@
   width: 4rem;
   height: 4rem;
   border-radius: 1rem;
-  background-color: #f3f4f6;
+  background: var(--gradient-primary);
   margin-bottom: 1rem;
 }
 

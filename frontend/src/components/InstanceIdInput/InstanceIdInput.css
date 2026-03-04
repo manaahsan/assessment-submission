@@ -148,7 +148,7 @@
 }
 
 .input-wrapper.focused .input-icon {
-  color: #6366f1;
+color: var(--text-primary);
 }
 
 .instance-input {
@@ -161,10 +161,11 @@
   padding: 12px 14px;
   outline: none;
   width: 100%;
+   color: var(--text-primary);
 }
 
 .instance-input::placeholder {
-  color: var(--text-muted);
+  color: var(--text-primary);
 }
 
 .clear-button {

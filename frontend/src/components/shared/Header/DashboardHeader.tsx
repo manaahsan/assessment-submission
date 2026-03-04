@@ -14,7 +14,7 @@ const DashboardHeader = ({
     <header className="dashboard-header">
       <div className="dashboard-container">
         <div className="icon-wrapper">
-          <BarChart3 className="dashboard-icon" />
+          <BarChart3 className="dashboard-icon" color="white" />
         </div>
 
         <div>

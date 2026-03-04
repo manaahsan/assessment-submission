@@ -1,7 +1,11 @@
 import { Download, Copy, FileText } from "lucide-react";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+
+// css
 import "./ExportControls.css";
+// types
 import { AssessmentResult } from "../../../../lib/types/assessment";
+
 import ThemeToggle from "../../../../components/shared/Toggle/ThemeToggle";
 
 interface ExportControlsProps {
@@ -10,7 +14,9 @@ interface ExportControlsProps {
 
 const ExportControls = ({ data }: ExportControlsProps) => {
   const exportJSON = () => {
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -41,10 +47,15 @@ const ExportControls = ({ data }: ExportControlsProps) => {
       `Progress: ${data.answered_questions}/${data.total_questions} questions answered`,
       ``,
       `Element Scores:`,
-      ...data.element_scores.map((e) => `  ${e.element}: ${e.percentage}% (${e.score}/${e.max_score})`),
+      ...data.element_scores.map(
+        (e) => `  ${e.element}: ${e.percentage}% (${e.score}/${e.max_score})`,
+      ),
       ``,
       `Questions:`,
-      ...data.questions.map((q) => `  [${q.status.toUpperCase()}] ${q.element}: ${q.question_text} — Score: ${q.score}/${q.max_score}`),
+      ...data.questions.map(
+        (q) =>
+          `  [${q.status.toUpperCase()}] ${q.element}: ${q.question_text} — Score: ${q.score}/${q.max_score}`,
+      ),
       ``,
       `Insights:`,
       ...data.insights.map((i) => `  [${i.type.toUpperCase()}] ${i.message}`),
@@ -62,15 +73,14 @@ const ExportControls = ({ data }: ExportControlsProps) => {
   return (
     <div className="export-controls">
       <button className="export-button" onClick={exportJSON}>
-        <Download  size={16} color="gray" /> JSON
+        <Download size={16} /> JSON
       </button>
       <button className="export-button" onClick={copyToClipboard}>
-        <Copy  size={16} color="gray" /> Copy
+        <Copy size={16} /> Copy
       </button>
       <button className="export-button" onClick={exportSummary}>
-        <FileText  size={16} color="gray" /> Summary
+        <FileText size={16} /> Summary
       </button>
-      <ThemeToggle />
     </div>
   );
 };

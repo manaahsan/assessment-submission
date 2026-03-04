@@ -63,7 +63,7 @@ const GaugeChart = ({ percentage }: GaugeChartProps) => {
   const strokeWidth = 12;
   const normalizedPercentage = Math.min(Math.max(animatedPercentage, 0), 100);
   const angle = (normalizedPercentage / 100) * 180;
-  const circumference = Math.PI * radius; // Half circle
+  const circumference = Math.PI * radius;
   const strokeDashoffset =
     circumference - (normalizedPercentage / 100) * circumference;
 

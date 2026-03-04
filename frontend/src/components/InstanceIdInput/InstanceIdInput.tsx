@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Search, Loader2, Sparkles } from "lucide-react";
 import "./InstanceIdInput.css";
+import ThemeToggle from "../shared/Toggle/ThemeToggle";
 
 interface InstanceIdInputProps {
   onFetch: (id: string) => void;
@@ -34,6 +35,9 @@ const InstanceIdInput = ({ onFetch, isLoading }: InstanceIdInputProps) => {
             <p className="instance-subtitle">
               Enter your assessment instance ID to retrieve detailed analytics
             </p>
+          </div>
+          <div className="">
+            <ThemeToggle/>
           </div>
         </div>
 

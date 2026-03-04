@@ -52,21 +52,7 @@ const BarChartView = ({ questions }: BarChartViewProps) => {
     return () => clearTimeout(timer);
   }, [data.length]);
 
-  // const getBarColor = (entry: typeof data[0]) => {
-  //   if (!entry.is_answered) return STATUS_COLORS.unanswered || "#9ca3af";
-  //   if (entry.percentage >= 80) return "#10b981";
-  //   if (entry.percentage >= 60) return "#6366f1";
-  //   if (entry.percentage >= 40) return "#f59e0b";
-  //   return "#ef4444";
-  // };
 
-  // const getStatusIcon = (entry: typeof data[0]) => {
-  //   if (!entry.is_answered) return "○";
-  //   if (entry.percentage >= 80) return "★";
-  //   if (entry.percentage >= 60) return "◆";
-  //   if (entry.percentage >= 40) return "◇";
-  //   return "!";
-  // };
 
   const handleBarHover = (e: React.MouseEvent, entry: typeof data[0], index: number) => {
     const rect = chartRef.current?.getBoundingClientRect();
@@ -112,10 +98,10 @@ const BarChartView = ({ questions }: BarChartViewProps) => {
         
         <div className="barchart-stats">
           <div className="stat-mini">
-            <span className="stat-value">
+            <span className="stat-value-b">
               {Math.round(data.filter(d => d.status === "answered").length / data.length * 100)}%
             </span>
-            <span className="stat-label">Response</span>
+            <span className="stat-label-b">Response</span>
           </div>
         </div>
       </div>

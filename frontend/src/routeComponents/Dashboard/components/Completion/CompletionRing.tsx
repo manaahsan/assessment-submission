@@ -14,7 +14,6 @@ const CompletionRing = ({ answered, total }: CompletionRingProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const percentage = total > 0 ? Math.round((answered / total) * 100) : 0;
-  const remaining = total - answered;
 
   // Animate percentage on mount
   useEffect(() => {
@@ -133,7 +132,6 @@ const CompletionRing = ({ answered, total }: CompletionRingProps) => {
             <div className="completion-center-content">
               <span
                 className="completion-percentage"
-                style={{ color: statusColor }}
               >
                 {animatedPercentage}%
               </span>
@@ -145,11 +143,11 @@ const CompletionRing = ({ answered, total }: CompletionRingProps) => {
       <div className="completion-footer">
         <div
           className="status-pill"
-          style={{
-            backgroundColor: `${statusColor}15`,
-            color: statusColor,
-            borderColor: `${statusColor}30`,
-          }}
+          // style={{
+          //   backgroundColor: `${statusColor}15`,
+          //   color: statusColor,
+          //   borderColor: `${statusColor}30`,
+          // }}
         >
           {percentage === 100
             ? "All questions completed!"

@@ -28,7 +28,7 @@ const Component = () => {
   }, []);
 
   if (isLoading) {
-    <Loading />;
+    return <Loading />;
   }
   return (
     <main className="assessment-main-container">

@@ -1,10 +1,9 @@
 .assessment-hero {
   position: relative;
   overflow: hidden;
-  height:100%
+  height: 100%;
 }
 
-/* Ambient Glow Effects */
 .hero-glow {
   position: absolute;
   border-radius: 50%;
@@ -16,7 +15,7 @@
 .hero-glow-1 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--glow-1) 0%, transparent 70%);
   top: -100px;
   right: -100px;
   animation: float-glow 8s ease-in-out infinite;
@@ -25,7 +24,7 @@
 .hero-glow-2 {
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--glow-2) 0%, transparent 70%);
   bottom: -50px;
   left: -50px;
   animation: float-glow 6s ease-in-out infinite reverse;
@@ -36,13 +35,12 @@
   50% { transform: translate(20px, -20px) scale(1.1); }
 }
 
-/* Main Card */
 .assessment-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius:24px;
   backdrop-filter: blur(20px);
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
   overflow: hidden;
   height: 100%;
   max-width: 1200px;
@@ -55,7 +53,6 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Header Layout */
 .assessment-card-header {
   display: flex;
   justify-content: space-between;
@@ -65,7 +62,6 @@
   position: relative;
 }
 
-/* Left Content */
 .assessment-card-info {
   flex: 1;
   min-width: 0;
@@ -83,20 +79,20 @@
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  background: rgba(16, 185, 129, 0.1);
-  color: #059669;
+  background: var(--badge-bg);
+  color: var(--text-accent);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-radius: 20px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid var(--badge-border);
 }
 
 .badge-dot {
   width: 6px;
   height: 6px;
-  background: #10b981;
+  background: var(--badge-dot);
   border-radius: 50%;
   animation: pulse-dot 2s ease-in-out infinite;
   box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
@@ -109,11 +105,10 @@
 
 .assessment-date {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
-/* Title Section */
 .title-wrapper {
   display: flex;
   gap: 20px;
@@ -124,13 +119,13 @@
   flex-shrink: 0;
   width: 56px;
   height: 56px;
-background: var(--gradient-primary);
+  background: var(--gradient-primary);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+  box-shadow: var(--card-shadow);
   animation: icon-float 4s ease-in-out infinite;
 }
 
@@ -151,25 +146,24 @@ background: var(--gradient-primary);
 .assessment-title {
   font-size: 1.875rem;
   font-weight: 800;
-  color: #111827;
   margin: 0 0 8px 0;
   line-height: 1.2;
   letter-spacing: -0.025em;
-  background: linear-gradient(135deg, #1f2937 0%, #4b5563 100%);
+  background: var(--gradient-title);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: var(--text-primary);
 }
 
 .assessment-description {
   font-size: 1rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0;
   max-width: 600px;
 }
 
-/* ID Section */
 .assessment-id-wrapper {
   display: flex;
   flex-direction: column;
@@ -188,8 +182,8 @@ background: var(--gradient-primary);
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
+  background: var(--id-bg);
+  border: 1px solid var(--id-border);
   border-radius: 8px;
   padding: 4px;
   width: fit-content;
@@ -197,18 +191,18 @@ background: var(--gradient-primary);
 }
 
 .id-container:hover {
-  background: #e5e7eb;
-  border-color: #d1d5db;
+  background: var(--id-hover-bg);
+  border-color: var(--id-hover-border);
 }
 
 .assessment-id {
   font-family: 'SF Mono', Monaco, monospace;
   font-size: 0.875rem;
-  color: #374151;
+  color: var(--id-text);
   padding: 6px 10px;
-  background: white;
+  background: var(--card-bg);
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--id-border);
 }
 
 .id-copy-btn {
@@ -240,7 +234,6 @@ background: var(--gradient-primary);
   height: 16px;
 }
 
-/* Export Section */
 .assessment-card-export {
   flex-shrink: 0;
   display: flex;
@@ -266,14 +259,13 @@ background: var(--gradient-primary);
   background: linear-gradient(90deg, #e5e7eb 0%, transparent 100%);
 }
 
-/* Stats Bar */
 .card-stats-bar {
   display: flex;
   align-items: center;
   gap: 24px;
   padding: 20px 32px;
-  background: linear-gradient(90deg, rgba(99, 102, 241, 0.03) 0%, rgba(168, 85, 247, 0.03) 100%);
-  border-top: 1px solid rgba(229, 231, 235, 0.5);
+  background: var(--stats-bg);
+  border-top: 1px solid var(--stats-border);
 }
 
 .stat-item {
@@ -285,13 +277,13 @@ background: var(--gradient-primary);
 .stat-value {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #111827;
+  color: var(--stats-value);
   line-height: 1;
 }
 
 .stat-label {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -303,45 +295,6 @@ background: var(--gradient-primary);
   background: #e5e7eb;
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .assessment-card {
-    background: rgba(17, 24, 39, 0.9);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .assessment-title {
-    background: linear-gradient(135deg, #f9fafb 0%, #d1d5db 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-
-  .assessment-description {
-    color: #9ca3af;
-  }
-
-  .id-container {
-    background: #1f2937;
-    border-color: #374151;
-  }
-
-  .assessment-id {
-    background: #111827;
-    border-color: #374151;
-    color: #e5e7eb;
-  }
-
-  .card-stats-bar {
-    background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
-    border-color: rgba(255, 255, 255, 0.05);
-  }
-
-  .stat-value {
-    color: #f9fafb;
-  }
-}
-
-/* Responsive */
 @media (max-width: 768px) {
   .assessment-card-header {
     flex-direction: column;

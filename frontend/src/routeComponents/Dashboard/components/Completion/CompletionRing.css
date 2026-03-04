@@ -1,14 +1,11 @@
 .completion-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--card-bg);
+  border: 1px solid var(--completion-card-border);
+  border-radius: 24px;
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
   padding: 24px;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.02),
-    0 10px 20px -5px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: var(--completion-card-shadow);
   overflow: hidden;
   transition: all 0.3s ease;
   animation: card-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -29,14 +26,13 @@
   height: 200%;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(99, 102, 241, 0.1) 0%,
+    var(--glow-color) 0%,
     transparent 70%
   );
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
-/* Header */
 .completion-header {
   display: flex;
   align-items: center;
@@ -48,7 +44,6 @@
   width: 36px;
   height: 36px;
   background: var(--gradient-primary);
-  /* background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); */
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -65,18 +60,15 @@
 .completion-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin: 0;
 }
 
-/* Content Layout */
 .completion-content {
   display: flex;
   align-items: center;
-  /* gap: 32px; */
 }
 
-/* Chart */
 .completion-chart-wrapper {
   position: relative;
   width: 140px;
@@ -123,6 +115,7 @@
   font-size: 1.75rem;
   font-weight: 800;
   line-height: 1;
+  color: var(--text-primary);
   transition: color 0.3s ease;
 }
 
@@ -134,7 +127,6 @@
   letter-spacing: 0.05em;
 }
 
-/* Stats Panel */
 .completion-stats {
   flex: 1;
   display: flex;
@@ -147,13 +139,13 @@
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: rgba(243, 244, 246, 0.5);
+  background: var(--stat-bg);
   border-radius: 12px;
   transition: all 0.2s ease;
 }
 
 .stat-row:hover {
-  background: rgba(243, 244, 246, 0.8);
+  background: var(--stat-bg-hover);
   transform: translateX(4px);
 }
 
@@ -168,13 +160,13 @@
 }
 
 .stat-icon.answered {
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
+  background: var(--stat-answered-bg);
+  color: var(--stat-answered-color);
 }
 
 .stat-icon.remaining {
-  background: rgba(156, 163, 175, 0.1);
-  color: #6b7280;
+  background: var(--stat-remaining-bg);
+  color: var(--stat-remaining-color);
 }
 
 .stat-icon svg {
@@ -207,7 +199,7 @@
 .stat-bar {
   flex: 1;
   height: 6px;
-  background: #e5e7eb;
+  background: var(--stat-bar-bg);
   border-radius: 3px;
   overflow: hidden;
   margin-left: auto;
@@ -221,40 +213,37 @@
 }
 
 .stat-bar-fill.remaining-fill {
-  background: #d1d5db;
+  background: var(--stat-bar-fill-remaining);
 }
 
-/* Total Badge */
 .total-badge {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px;
-  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  background: var(--gradient-total-badge);
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--completion-card-border);
 }
 
 .total-label {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--total-label-color);
   font-weight: 500;
 }
 
 .total-value {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #374151;
-  font-family: "SF Mono", monospace;
+  color: var(--total-value-color);
+  font-family: var(--font-mono);
 }
 
-/* Footer */
 .completion-footer {
   margin-top: 20px;
   padding-top: 16px;
   border-top: 1px solid rgba(229, 231, 235, 0.5);
   text-align: center;
-  /* margin: auto 0; */
 }
 
 .status-pill {
@@ -267,6 +256,8 @@
   font-weight: 600;
   border: 1px solid;
   animation: fade-in 0.5s ease;
+  background: var(--id-bg);
+  color: var(--text-primary);
 }
 
 @keyframes fade-in {
@@ -291,44 +282,6 @@
   }
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .completion-card {
-    background: rgba(17, 24, 39, 0.8);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .completion-title {
-    color: #f9fafb;
-  }
-
-  .stat-row {
-    background: rgba(31, 41, 55, 0.5);
-  }
-
-  .stat-row:hover {
-    background: rgba(31, 41, 55, 0.8);
-  }
-
-  .total-badge {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-    border-color: #374151;
-  }
-
-  .total-label {
-    color: #9ca3af;
-  }
-
-  .total-value {
-    color: #e5e7eb;
-  }
-
-  .progress-ring-track {
-    stroke: #374151;
-  }
-}
-
-/* Mobile Responsive */
 @media (max-width: 640px) {
   .completion-content {
     flex-direction: column;

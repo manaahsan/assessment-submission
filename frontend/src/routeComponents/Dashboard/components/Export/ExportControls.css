@@ -14,7 +14,7 @@
   border-radius: 8px;
   border: 1px solid #6b7280;
   background-color: transparent;
-  color: #111827;
+  color: var(--text-primary);
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
 }
@@ -28,4 +28,5 @@
   width: 16px; 
   height: 16px;
   margin-right: 6px;
+    color: var(--text-primary);
 }

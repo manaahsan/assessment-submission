@@ -1,0 +1,93 @@
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.toggle-track {
+  position: relative;
+  width: 56px;
+  height: 28px;
+  background: #e5e7eb;
+  border-radius: 9999px;
+  transition: background 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle.dark .toggle-track {
+  background: #374151;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle.dark .toggle-thumb {
+  transform: translateX(28px);
+}
+
+.icon-t {
+  width: 14px;
+  height: 14px;
+  color: #f59e0b;
+  margin: 0;
+}
+
+.icon-t.moon {
+  color: #6366f1;
+}
+
+.toggle-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  transition: color 0.3s ease;
+}
+
+.theme-toggle.dark .toggle-label {
+  color: #e5e7eb;
+}
+
+.theme-toggle:hover .toggle-track {
+  background: #d1d5db;
+}
+
+.theme-toggle.dark:hover .toggle-track {
+  background: #4b5563;
+}
+
+.theme-toggle:active .toggle-thumb {
+  transform: scale(0.95);
+}
+
+.theme-toggle.dark:active .toggle-thumb {
+  transform: translateX(28px) scale(0.95);
+}
+
+@media (max-width: 640px) {
+  .toggle-label {
+    display: none;
+  }
+  
+  .theme-toggle {
+    padding: 4px;
+  }
+}

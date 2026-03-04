@@ -133,9 +133,6 @@ const QuestionBreakdown = ({ questions }: QuestionBreakdownProps) => {
 
   return (
     <div className="qb-card">
-      {/* Background Effects */}
-      <div className="qb-glow" />
-
       {/* Header */}
       <div className="qb-header">
         <div className="qb-title-group">
