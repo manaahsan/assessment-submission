@@ -14,6 +14,9 @@ Easy-to-understand performance insights
 
 The main goal was to make the results meaningful and simple to understand instead of just displaying numbers.
 
+## Time Spent
+6 - 8 hours
+
 ## Approach
 
 Instead of just showing scores like “65 out of 100”, I focused on making the data more visual and informative.
@@ -115,6 +118,19 @@ Improved spacing, alignment, and readability
 Made the layout responsive for different screen sizes
 
 These improvements made the dashboard feel smoother and more polished.
+
+### Theme Support (Light & Dark Mode)
+
+I implemented Light and Dark theme support to improve accessibility and user experience.
+
+Added theme-based styling using CSS variables
+.
+Maintained consistent color tokens for text,background, borders, and charts.
+
+Ensured charts and UI components adapt properly inboth themes.
+
+Used global state (Context API) to manage themeswitching.
+
 
 ## Tools & Libraries Used
 
