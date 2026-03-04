@@ -1,13 +1,17 @@
- 
- export const CHART_COLORS = {
-  answered: "hsl(142, 71%, 45%)",  
-  unanswered: "hsl(0, 84%, 60%)",       
-  reflection: "hsl(217, 91%, 60%)",    
-  skipped: "hsl(38, 92%, 50%)",         
+import { CheckCircle, AlertTriangle, } from "lucide-react";
+
+// types
+import { Insight } from "../types/assessment";
+
+export const CHART_COLORS = {
+  answered: "hsl(142, 71%, 45%)",
+  unanswered: "hsl(0, 84%, 60%)",
+  reflection: "hsl(217, 91%, 60%)",
+  skipped: "hsl(38, 92%, 50%)",
 
   elements: [
-    "hsl(217, 91%, 60%)",   
-    "hsl(142, 71%, 45%)", 
+    "hsl(217, 91%, 60%)",
+    "hsl(142, 71%, 45%)",
     "hsl(38, 92%, 50%)",
     "hsl(0, 84%, 60%)",
     "hsl(262, 83%, 58%)",
@@ -20,9 +24,21 @@
   },
 
   insights: {
-    warning: { bg: "hsl(0, 86%, 97%)", border: "hsl(0, 84%, 60%)", text: "hsl(0, 84%, 40%)" },
-    positive: { bg: "hsl(142, 76%, 96%)", border: "hsl(142, 71%, 45%)", text: "hsl(142, 71%, 28%)" },
-    info: { bg: "hsl(217, 91%, 96%)", border: "hsl(217, 91%, 60%)", text: "hsl(217, 91%, 35%)" },
+    warning: {
+      bg: "hsl(0, 86%, 97%)",
+      border: "hsl(0, 84%, 60%)",
+      text: "hsl(0, 84%, 40%)",
+    },
+    positive: {
+      bg: "hsl(142, 76%, 96%)",
+      border: "hsl(142, 71%, 45%)",
+      text: "hsl(142, 71%, 28%)",
+    },
+    info: {
+      bg: "hsl(217, 91%, 96%)",
+      border: "hsl(217, 91%, 60%)",
+      text: "hsl(217, 91%, 35%)",
+    },
   },
 };
 
@@ -33,10 +49,10 @@ export const STATUS_COLORS: Record<string, string> = {
   skipped: CHART_COLORS.skipped,
 };
 
- export const getScoreConfig = (pct: number) => {
+export const getScoreConfig = (pct: number) => {
   if (pct >= 80)
     return {
-      color: "#0B3C8A", 
+      color: "#0B3C8A",
       gradient: "linear-gradient(135deg, #073C92 0%, #2563eb 100%)",
       label: "Excellent",
       icon: "🏆",
@@ -74,7 +90,7 @@ export const getScoreStatus = (percentage: number) => {
   if (percentage >= 80)
     return {
       label: "Excellent",
-      color: "#073C92", 
+      color: "#073C92",
       icon: "✓",
     };
 
@@ -94,8 +110,8 @@ export const getScoreStatus = (percentage: number) => {
 
   return {
     label: "Needs Work",
-      color: "hsl(222 47% 11%)",
-      icon: "!",
+    color: "hsl(222 47% 11%)",
+    icon: "!",
   };
 };
 
@@ -115,19 +131,19 @@ export const getBarGradient = (percentage: number, baseColor: string) => {
 export const getBarColor = (entry: any) => {
   if (!entry.is_answered) return "#64748b";
 
-  if (entry.percentage >= 80) return "#073C92"; 
+  if (entry.percentage >= 80) return "#073C92";
   if (entry.percentage >= 60) return "#1E40AF";
-  if (entry.percentage >= 40) return "#334155"; 
-  return "hsl(222 47% 11%)"; 
+  if (entry.percentage >= 40) return "#334155";
+  return "hsl(222 47% 11%)";
 };
 
 export const getStatusIcon = (entry: any) => {
   if (!entry.is_answered) return "○";
 
-  if (entry.percentage >= 80) return "●"; 
-  if (entry.percentage >= 60) return "◉"; 
-  if (entry.percentage >= 40) return "◌"; 
-  return "▲"; 
+  if (entry.percentage >= 80) return "●";
+  if (entry.percentage >= 60) return "◉";
+  if (entry.percentage >= 40) return "◌";
+  return "▲";
 };
 
 export const getStatusConfig = (status: string) => {
@@ -151,7 +167,7 @@ export const getStatusConfig = (status: string) => {
     case "reflection":
       return {
         label: "Reflection",
-        color: STATUS_COLORS.reflection || "#1E40AF", 
+        color: STATUS_COLORS.reflection || "#1E40AF",
         icon: "◉",
         bg: "rgba(30, 64, 175, 0.12)",
       };
@@ -159,19 +175,49 @@ export const getStatusConfig = (status: string) => {
     default:
       return {
         label: status,
-        color: "#475569", 
+        color: "#475569",
         icon: "•",
         bg: "rgba(71, 85, 105, 0.12)",
       };
   }
 };
 
-
 export const getScoreColor = (score: number, max: number) => {
   const pct = max > 0 ? (score / max) * 100 : 0;
 
-  if (pct >= 80) return "#073C92";        
-  if (pct >= 60) return "#1E40AF";       
-  if (pct >= 40) return "#334155";     
-  return "hsl(222 47% 11%)";            
+  if (pct >= 80) return "#073C92";
+  if (pct >= 60) return "#1E40AF";
+  if (pct >= 40) return "#334155";
+  return "hsl(222 47% 11%)";
+};
+
+export const getPriorityConfig = (insight: Insight) => {
+  if (insight.positive) {
+    return {
+      icon: CheckCircle,
+      gradient: "linear-gradient(135deg, #10b981 0%, #34d399 100%)",
+      bg: "rgba(16, 185, 129, 0.1)",
+      border: "rgba(16, 185, 129, 0.2)",
+      color: "#059669",
+    };
+  }
+
+  const priority = insight.priority || "medium";
+  if (priority === "high") {
+    return {
+      icon: AlertTriangle,
+      gradient: "linear-gradient(135deg, #ef4444 0%, #f87171 100%)",
+      bg: "rgba(239, 68, 68, 0.1)",
+      border: "rgba(239, 68, 68, 0.2)",
+      color: "#dc2626",
+    };
+  }
+
+  return {
+    icon: AlertTriangle,
+    gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)",
+    bg: "rgba(245, 158, 11, 0.1)",
+    border: "rgba(245, 158, 11, 0.2)",
+    color: "#d97706",
+  };
 };

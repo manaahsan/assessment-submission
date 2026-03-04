@@ -49,6 +49,7 @@ export interface Insight {
   type: "warning" | "positive" | "info";
   message: string;
   positive: boolean
+    priority?: "high" | "medium" | "low";
 }
 
 export interface AssessmentResult {
@@ -101,10 +102,10 @@ export interface ElementScores {
 
 // Type for a single element in the assessment
 export interface AssessmentElement {
-  element: string; // "1.1", "2.1", etc.
+  element: string; 
   total_questions: number;
   answered_questions: number;
-  completion_percentage: number; // e.g., 50
+  completion_percentage: number;
   scores: ElementScores;
   question_answers: QuestionAnswer[];
 }
