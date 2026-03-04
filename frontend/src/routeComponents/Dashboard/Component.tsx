@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
+
+// components
 import InstanceIdInput from "../../components/InstanceIdInput/InstanceIdInput";
+import { Loading } from "../../components/shared/Loading/Loading";
 
-
-import { useAssessmentDetails } from "./hooks";
-
+// route-components
 import CompletionRing from "./components/Completion/CompletionRing";
 import OverallScore from "./components/Score/OverallScore";
 import GaugeChart from "./components/charts/GaugeChart";
@@ -14,7 +15,10 @@ import RadarChartView from "./components/charts/RadarChartView";
 import QuestionBreakdown from "./components/Question/QuestionBreakdown";
 import InsightsSection from "./components/InsightsSection/InsightsSection";
 import InfoCard from "./components/Card/InfoCard";
-import { Loading } from "../../components/shared/Loading/Loading";
+
+// hoooks
+import { useAssessmentDetails } from "./hooks";
+
 
 const Component = () => {
   const [instanceId, setInstanceId] = useState("");
@@ -23,7 +27,6 @@ const Component = () => {
   const handleFetch = useCallback(async (id: string) => {
     setInstanceId(id);
   }, []);
-console.log(isLoading)
   return (
     <main className="assessment-main-container">
       <InstanceIdInput onFetch={handleFetch} isLoading={isLoading} />
@@ -34,7 +37,7 @@ console.log(isLoading)
       )}
       {data && !isLoading && (
         <div className="assessment-content">
-          {/* TOP ROW: InfoCard + CompletionRing */}
+          {/* InfoCard + CompletionRing */}
           <div className="top-row">
             <div className="info-section">
               <InfoCard data={data} />
@@ -47,7 +50,7 @@ console.log(isLoading)
             </div>
           </div>
 
-          {/* METRICS ROW: Overall + Gauge */}
+          {/* Overall + Gauge */}
           <div className="metrics-row">
             <OverallScore
               percentage={data?.scores.percentage}
@@ -57,7 +60,7 @@ console.log(isLoading)
             <GaugeChart percentage={data?.scores.percentage} />
           </div>
 
-          {/* SINGLE ROW: ScoresByElement + BarChart + RadarChart */}
+          {/* ScoresByElement + BarChart + RadarChart */}
           <div className="analytics-row">
             <div className="analytics-scores">
               <ScoresByElement elementScores={data?.element_scores_array} />
@@ -70,7 +73,7 @@ console.log(isLoading)
             </div>
           </div>
 
-          {/* BOTTOM SECTION: Side-by-Side */}
+          {/* QuestionBreakdown + InsightsSection */}
           <div className="bottom-split">
             <QuestionBreakdown
               questions={data?.element_scores_array?.flatMap(
