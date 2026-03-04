@@ -322,6 +322,9 @@ color: var(--text-primary);
 .fallback-scores{
   margin-top: 1.5em;
 }
+.fallback-label{
+  color: var(--text-primary);
+}
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {

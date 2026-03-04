@@ -98,7 +98,7 @@ const RadarChartView = ({ elementScores }: RadarChartViewProps) => {
             <div className="fallback-scores">
               {data.map((d, i) => (
                 <div key={i} className="fallback-row">
-                  <span>{d.element}&nbsp;</span>
+                  <span className="fallback-label">{d.element}&nbsp;</span>
                   <span style={{ color: getScoreColor(d.score) }}>
                     {Math.round(d.score)}%
                   </span>
