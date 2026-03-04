@@ -19,11 +19,9 @@ const Component = () => {
   const [instanceId, setInstanceId] = useState(
 ""
   );
-      // "d1111111-1111-1111-1111-111111111111",
   const { data, isLoading } = useAssessmentDetails(instanceId);
 
   const handleFetch = useCallback(async (id: string) => {
-    console.log(id, 17);
     setInstanceId(id);
   }, []);
 

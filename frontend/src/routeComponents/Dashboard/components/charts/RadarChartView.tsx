@@ -1,7 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import "./RadarChartView.css";
-import { CHART_COLORS } from "../../../../lib/helpers";
 import { Layers } from "lucide-react";
+
+// css
+import "./RadarChartView.css";
+
+// helper
+import { CHART_COLORS } from "../../../../lib/helpers";
+
+// types
 import { ElementScore } from "../../../../lib/types/assessment";
 
 interface RadarChartViewProps {
@@ -15,7 +21,6 @@ const getScoreColor = (score: number) => {
 };
 
 const RadarChartView = ({ elementScores }: RadarChartViewProps) => {
-  console.log(elementScores, 12);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [animatedData, setAnimatedData] = useState<number[]>([]);
   const [isVisible, setIsVisible] = useState(false);
@@ -72,7 +77,6 @@ const RadarChartView = ({ elementScores }: RadarChartViewProps) => {
 
     return () => clearInterval(timer);
   }, [isVisible, data.length]);
-
 
   if (data.length < 3) {
     return (

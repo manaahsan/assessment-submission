@@ -5,7 +5,7 @@ const NoResults = () => {
   return (
     <div className="no-results-card">
       <div className="no-results-icon">
-        <ClipboardList className="icon" />
+        <ClipboardList className="icon-nr" />
       </div>
       <h3 className="no-results-title">No Results Loaded</h3>
       <p className="no-results-text">
