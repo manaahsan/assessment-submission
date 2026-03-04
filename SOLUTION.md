@@ -13,7 +13,7 @@ The original system only displayed raw scores. My goal was to **transform the da
 - Enhance the user experience with responsive design, notifications, and loading states.  
 - Adding the view time animation using IntersectionObserver animate the required element.
 - Enable Light and Dark theme support for accessibility.  
-- Provide features like JSON export and copy-to-clipboard for easy data sharing.  
+- Includes features for exporting JSON, copying to clipboard, and generating a summary for easy sharing of assessment data.
 
 ---
 
