@@ -1,9 +1,14 @@
 import { useEffect, useState, useRef } from "react";
+import { Layers } from "lucide-react";
+
+// css
 import "./ScoresByElement.css";
 
+// types
 import { ElementScore } from "../../../../lib/types/assessment";
+
+// helper
 import { CHART_COLORS, getBarGradient, getScoreStatus } from "../../../../lib/helpers";
-import { Layers } from "lucide-react";
 
 interface ScoresByElementProps {
   elementScores: ElementScore[];
