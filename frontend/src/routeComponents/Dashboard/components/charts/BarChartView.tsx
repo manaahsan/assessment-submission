@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { ChartNoAxesColumnDecreasing } from "lucide-react";
+
 // css
 import "./BarChartView.css";
 
@@ -301,28 +302,6 @@ const BarChartView = ({ questions }: BarChartViewProps) => {
             </div>
           </div>
         </div>
-        
-        {/* <div className="legend-section">
-          <span className="legend-title">Performance</span>
-          <div className="legend-row">
-            <div className="legend-item">
-              <span className="legend-color" style={{ backgroundColor: "#10b981" }} />
-              <span>Excellent (80%+)</span>
-            </div>
-            <div className="legend-item">
-              <span className="legend-color" style={{ backgroundColor: "#6366f1" }} />
-              <span>Good (60-79%)</span>
-            </div>
-            <div className="legend-item">
-              <span className="legend-color" style={{ backgroundColor: "#f59e0b" }} />
-              <span>Fair (40-59%)</span>
-            </div>
-            <div className="legend-item">
-              <span className="legend-color" style={{ backgroundColor: "#ef4444" }} />
-              <span>Needs Work (&lt;40%)</span>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );
