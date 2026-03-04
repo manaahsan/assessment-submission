@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-
-import "./CompletionRing.css";
 import { CheckLine } from "lucide-react";
+
+// css
+import "./CompletionRing.css";
+
+// helpers
 import { CHART_COLORS } from "../../../../lib/helpers";
 
 interface CompletionRingProps {
@@ -12,7 +15,6 @@ interface CompletionRingProps {
 const CompletionRing = ({ answered, total }: CompletionRingProps) => {
   const [animatedPercentage, setAnimatedPercentage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-
   const percentage = total > 0 ? Math.round((answered / total) * 100) : 0;
 
   // Animate percentage on mount
@@ -31,9 +33,9 @@ const CompletionRing = ({ answered, total }: CompletionRingProps) => {
 
   // Determine status color based on percentage
   const getStatusColor = () => {
-    if (percentage >= 80) return "#10b981"; // emerald
-    if (percentage >= 50) return "#073c92"; // indigo
-    return "#f59e0b"; // amber
+    if (percentage >= 80) return "#10b981";
+    if (percentage >= 50) return "#073c92";
+    return "#f59e0b";
   };
 
   const statusColor = getStatusColor();
@@ -130,9 +132,7 @@ const CompletionRing = ({ answered, total }: CompletionRingProps) => {
           {/* Center content */}
           <div className="completion-center">
             <div className="completion-center-content">
-              <span
-                className="completion-percentage"
-              >
+              <span className="completion-percentage">
                 {animatedPercentage}%
               </span>
               <span className="completion-label">Complete</span>
@@ -141,14 +141,7 @@ const CompletionRing = ({ answered, total }: CompletionRingProps) => {
         </div>
       </div>
       <div className="completion-footer">
-        <div
-          className="status-pill"
-          // style={{
-          //   backgroundColor: `${statusColor}15`,
-          //   color: statusColor,
-          //   borderColor: `${statusColor}30`,
-          // }}
-        >
+        <div className="status-pill">
           {percentage === 100
             ? "All questions completed!"
             : percentage >= 80
