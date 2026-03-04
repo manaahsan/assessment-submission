@@ -58,6 +58,7 @@ export interface AssessmentResult {
   assessment_description: string;
   total_questions: number;
   answered_questions: number;
+  completion_percentage:number;
   total_score: number;
   max_total_score: number;
   percentage: number;

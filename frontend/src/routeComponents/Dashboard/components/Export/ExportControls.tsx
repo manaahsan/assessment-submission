@@ -6,13 +6,12 @@ import "./ExportControls.css";
 // types
 import { AssessmentResult } from "../../../../lib/types/assessment";
 
-import ThemeToggle from "../../../../components/shared/Toggle/ThemeToggle";
-
 interface ExportControlsProps {
   data: AssessmentResult;
 }
 
 const ExportControls = ({ data }: ExportControlsProps) => {
+  console.log(data)
   const exportJSON = () => {
     const blob = new Blob([JSON.stringify(data, null, 2)], {
       type: "application/json",
@@ -20,7 +19,7 @@ const ExportControls = ({ data }: ExportControlsProps) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `assessment-${data.instance_id}.json`;
+    a.download = `assessment-${data.instance.id}.json`;
     a.click();
     URL.revokeObjectURL(url);
     toast.success("JSON file downloaded successfully");
@@ -37,34 +36,28 @@ const ExportControls = ({ data }: ExportControlsProps) => {
 
   const exportSummary = () => {
     const lines = [
-      `Assessment Results Summary`,
-      `==========================`,
-      `Instance ID: ${data.instance_id}`,
-      `Title: ${data.assessment_title}`,
-      `Status: ${data.status}`,
-      ``,
-      `Score: ${data.total_score}/${data.max_total_score} (${data.percentage.toFixed(2)}%)`,
-      `Progress: ${data.answered_questions}/${data.total_questions} questions answered`,
-      ``,
-      `Element Scores:`,
-      ...data.element_scores.map(
-        (e) => `  ${e.element}: ${e.percentage}% (${e.score}/${e.max_score})`,
-      ),
-      ``,
-      `Questions:`,
-      ...data.questions.map(
-        (q) =>
-          `  [${q.status.toUpperCase()}] ${q.element}: ${q.question_text} — Score: ${q.score}/${q.max_score}`,
-      ),
-      ``,
-      `Insights:`,
-      ...data.insights.map((i) => `  [${i.type.toUpperCase()}] ${i.message}`),
-    ];
+    `# Assessment Results Summary`,
+    ``,
+    `**Instance ID:** ${data.instance.id}`,
+    `**Responder Name:** ${data.instance.responder_name}`,
+    `**Element:** ${data.instance.element}`,
+    `**Completed:** ${data.instance.completed ? "Yes" : "No"}`,
+    data.instance.completed_at ? `**Completed At:** ${data.instance.completed_at}` : "",
+    ``,
+    `**Total Questions:** ${data.total_questions}`,
+    `**Answered Questions:** ${data.answered_questions}`,
+    `**Completion Percentage:** ${data.completion_percentage}%`,
+    ``,
+    `## Scores`,
+    `**Total Score:** ${data.scores.total_score} / ${data.scores.max_score} (${data.scores.percentage.toFixed(2)}%)`,
+    ``,
+    `## Element Scores`,
+  ];
     const blob = new Blob([lines.join("\n")], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `assessment-summary-${data.instance_id}.txt`;
+    a.download = `assessment-summary-${data.instance.id}.txt`;
     a.click();
     URL.revokeObjectURL(url);
     toast("Summary downloaded successfully");
