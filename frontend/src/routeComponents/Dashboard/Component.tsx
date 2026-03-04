@@ -27,6 +27,7 @@ const Component = () => {
   const handleFetch = useCallback(async (id: string) => {
     setInstanceId(id);
   }, []);
+  
   return (
     <main className="assessment-main-container">
       <InstanceIdInput onFetch={handleFetch} isLoading={isLoading} />

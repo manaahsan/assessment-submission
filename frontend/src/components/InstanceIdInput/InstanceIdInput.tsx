@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Search, Loader2, Sparkles } from "lucide-react";
 import "./InstanceIdInput.css";
+
+// components
 import ThemeToggle from "../shared/Toggle/ThemeToggle";
 
 interface InstanceIdInputProps {
