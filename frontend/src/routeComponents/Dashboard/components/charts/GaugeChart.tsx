@@ -1,7 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import "./GaugeChart.css";
-import { getScoreConfig } from "../../../../lib/helpers";
 import { Loader } from "lucide-react";
+
+// css
+import "./GaugeChart.css";
+
+// helper
+import { getScoreConfig } from "../../../../lib/helpers";
+
 
 interface GaugeChartProps {
   percentage: number;
