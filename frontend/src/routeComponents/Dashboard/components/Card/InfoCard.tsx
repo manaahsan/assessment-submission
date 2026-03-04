@@ -1,7 +1,13 @@
 import { Layers } from "lucide-react";
-import { AssessmentResult } from "../../../../lib/types/assessment";
-import ExportControls from "../Export/ExportControls";
+
+// css
 import "./InfoCard.css";
+
+// route-components
+import ExportControls from "../Export/ExportControls";
+
+// types
+import { AssessmentResult } from "../../../../lib/types/assessment";
 
 interface Props {
   data: AssessmentResult;
