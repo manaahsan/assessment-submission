@@ -1,166 +1,116 @@
+# Assessment Management System Dashboard
+
 ## Project Overview
 
-This project is an Assessment Management System where a user enters a candidate or test ID, and the system displays detailed performance results.
+This project is an **Assessment Management System** that allows users to enter a candidate or test ID and view detailed performance results.
 
-The original version only showed basic information. My task was to improve it by turning the raw API data into a proper dashboard with:
+The original system only displayed raw scores. My goal was to **transform the data into an informative, visual, and user-friendly dashboard** that makes insights easy to understand.
 
-Visual charts
+### Key Objectives
 
-Clear score breakdowns
+- Present scores in a visually engaging way rather than just plain numbers.  
+- Provide performance insights and breakdowns by category.  
+- Enhance the user experience with responsive design, notifications, and loading states.  
+- Adding the view time animation using IntersectionObserver animate the required element.
+- Enable Light and Dark theme support for accessibility.  
+- Provide features like JSON export and copy-to-clipboard for easy data sharing.  
 
-Better UI and user experience
-
-Easy-to-understand performance insights
-
-The main goal was to make the results meaningful and simple to understand instead of just displaying numbers.
+---
 
 ## Time Spent
-6 - 8 hours
+
+**6–8 hours**
+
+---
 
 ## Approach
 
-Instead of just showing scores like “65 out of 100”, I focused on making the data more visual and informative.
+Instead of showing raw numbers like “65 out of 100”, I focused on creating a **visual, interactive, and informative dashboard**.
 
-Here’s how I approached it:
+**Steps taken:**
 
-Used TanStack Query to fetch assessment data based on the entered ID.
+1. **Data Fetching**
+   - Used **TanStack Query (`useQuery`)** to fetch assessment data based on the entered ID.
+   - Benefits:
+     - Automatic handling of loading and error states.
+     - Caching to prevent unnecessary API calls.
+     - Clean separation of data fetching logic from UI.
 
-Processed and transformed the API response into useful metrics like percentages and performance labels.
+2. **API Layer**
+   - Used **Axios** with a centralized configuration for consistent API calls and error handling.
+   - Displayed user-friendly error messages for invalid IDs or network issues.
 
-Displayed the data using charts and structured breakdown sections.
+3. **Dashboard Enhancements**
+   - Converted raw API data into:
+     - **Overall score percentage**
+     - **Performance labels** (e.g., Strong, Average, Needs Improvement)
+     - **Section-wise score breakdown**
+     - **Visual charts** for easier understanding
+     - **Status indicators** for answered/unanswered/completed sections
+   - Example:
+     - Instead of: `Score: 65/100`  
+     - Displayed:
+       - Percentage visualization
+       - Performance summary
+       - Category breakdown
+       - Insight messages explaining performance
 
-Improved the overall experience by handling loading states, errors, and notifications properly.
+4. **Global State Management**
+   - Used **React Context API** to manage global values such as theme selection.
+   - Avoided prop drilling and kept app structure cleaner.
 
-Kept the code clean and organized so it’s scalable for future improvements.
+5. **UX Improvements**
+   - Added loading indicators while fetching data.
+   - Implemented **react-hot-toast** for success/error notifications.
+   - Improved spacing, alignment, and readability.
+   - Made the layout responsive across devices.
 
-I wanted the dashboard to feel professional and easy to read — not just functional.
+6. **Theme Support (Light & Dark)**
+   - Used **CSS variables** for consistent color tokens.
+   - Ensured charts and UI components adapt correctly to theme changes.
+   - Managed theme switching with **global state**.
 
-## Implementation Details
+7. **Data Export & Copy**
+   - Implemented **JSON download** for assessment results.
+   - Added **copy-to-clipboard** functionality for easy sharing.
+   - Provided a **summary view** highlighting key insights.
 
- ### Data Fetching
-
-I used TanStack Query (useQuery) to fetch assessment results dynamically when a user enters an ID.
-
-It helped me:
-
-Handle loading and error states automatically
-
-Cache data to prevent unnecessary API calls
-
-Keep the components clean and focused on UI
-
-### API Layer
-
-I used Axios with a centralized configuration file.
-
-This helped me:
-
-Keep API calls organized
-
-Handle errors consistently
-
-Show user-friendly error messages
-
-### Dashboard Enhancements
-
-Instead of displaying plain numbers, I converted the raw API data into:
-
-Overall score percentage
-
-Performance labels (e.g., strong, average, needs improvement)
-
-Section-wise breakdown of scores
-
-Visual charts for better understanding
-
-Status indicators (answered, unanswered, completed, etc.)
-
-For example, instead of showing:
-
-Score: 65/100
-
-I displayed:
-
-A percentage visualization
-
-A performance summary
-
-Category-wise breakdown
-
-Insight messages explaining the performance
-
-This makes it much easier for users to quickly understand how well the candidate performed.
-
-### Global State
-
-I used React Context API to manage shared state across components.
-
-This helped me:
-
-Avoid prop drilling
-
-Keep global values centralized
-
-Make the app structure cleaner
-
-### UX Improvements
-
-To improve the overall experience, I:
-
-Added loading indicators while data is being fetched
-
-Showed error notifications if the ID is invalid
-
-Used react-hot-toast for success and error feedback
-
-Improved spacing, alignment, and readability
-
-Made the layout responsive for different screen sizes
-
-These improvements made the dashboard feel smoother and more polished.
-
-### Theme Support (Light & Dark Mode)
-
-I implemented Light and Dark theme support to improve accessibility and user experience.
-
-Added theme-based styling using CSS variables
-.
-Maintained consistent color tokens for text,background, borders, and charts.
-
-Ensured charts and UI components adapt properly inboth themes.
-
-Used global state (Context API) to manage themeswitching.
-
+---
 
 ## Tools & Libraries Used
 
-React
+- **React**  
+- **TypeScript**  
+- **TanStack Query**  
+- **Axios**  
+- **React Hot Toast**  
+- **React Context API**  
+- **ReCharts** (for visualizations)  
+- **AI Assistance:** ChatGPT – used for validating approach and improving structure  
 
-TypeScript
-
-TanStack Query
-
-Axios
-
-React Hot Toast
-
-React Context API
-
-ReChart library (for visualizations)
-
-## AI tools used: ChatGPT
-I used it mainly for validating my approach and improving the structure of the implementation.
+---
 
 ## Testing
 
-I tested the dashboard by:
+Tested the dashboard by:
 
-Entering valid IDs and verifying the data displayed correctly
+- Entering valid IDs and verifying the displayed data.
+- Entering invalid IDs to ensure error handling works.
+- Checking loading states during API calls.
+- Testing edge cases:
+  - Very low scores
+  - Very high scores
+  - Incomplete assessments
+- Verifying charts accurately reflect the API data.
+- Testing JSON download and copy functionality for correctness.
 
-Entering invalid IDs and checking that error messages appear
+---
 
-Checking loading states during API calls
+## Outcome
 
-Testing edge cases like very low scores, very high scores, and incomplete tests
+The dashboard is now:
 
-Making sure the charts correctly reflect the API data
+- **Visual & intuitive:** Makes performance easy to interpret at a glance.  
+- **Responsive & polished:** Works well on desktop and mobile screens.  
+- **Accessible:** Supports both Light and Dark themes.  
+- **Interactive:** Provides insights and data export options.
