@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Layers } from "lucide-react";
+
+// css
 import "./OverallScore.css";
 
 interface OverallScoreProps {
@@ -7,8 +9,6 @@ interface OverallScoreProps {
   score: number;
   maxScore: number;
 }
-
-const PRIMARY_COLOR = "#000000";
 
 const OverallScore = ({ percentage, score, maxScore }: OverallScoreProps) => {
   const [displayPercentage, setDisplayPercentage] = useState(0);
