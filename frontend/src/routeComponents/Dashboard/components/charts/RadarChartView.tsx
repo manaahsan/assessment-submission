@@ -7,8 +7,15 @@ import { ElementScore } from "../../../../lib/types/assessment";
 interface RadarChartViewProps {
   elementScores: ElementScore[];
 }
+const getScoreColor = (score: number) => {
+  if (score >= 80) return "#10b981";
+  if (score >= 60) return "#6366f1";
+  if (score >= 40) return "#f59e0b";
+  return "#ef4444";
+};
 
 const RadarChartView = ({ elementScores }: RadarChartViewProps) => {
+  console.log(elementScores, 12);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [animatedData, setAnimatedData] = useState<number[]>([]);
   const [isVisible, setIsVisible] = useState(false);
@@ -17,7 +24,7 @@ const RadarChartView = ({ elementScores }: RadarChartViewProps) => {
   const data = elementScores
     .filter((e) => e.scores.max_score > 0)
     .map((e) => ({
-      element: e.element,
+      element: `Element ${e.element} -`,
       score: e.scores.percentage,
       fullMark: 100,
     }));
@@ -66,6 +73,7 @@ const RadarChartView = ({ elementScores }: RadarChartViewProps) => {
     return () => clearInterval(timer);
   }, [isVisible, data.length]);
 
+
   if (data.length < 3) {
     return (
       <div className="radar-card empty" ref={cardRef}>
@@ -81,12 +89,27 @@ const RadarChartView = ({ elementScores }: RadarChartViewProps) => {
           <p className="radar-empty">
             At least 3 scored elements needed for radar chart.
           </p>
-          <span className="empty-hint">Current elements: {data.length}</span>
+          <span className="empty-hint">
+            Current scored elements: {data.length} / {elementScores.length}{" "}
+            total
+          </span>
+          {/* Show a simple list fallback when < 3 elements */}
+          {data.length > 0 && (
+            <div className="fallback-scores">
+              {data.map((d, i) => (
+                <div key={i} className="fallback-row">
+                  <span>{d.element}&nbsp;</span>
+                  <span style={{ color: getScoreColor(d.score) }}>
+                    {Math.round(d.score)}%
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
   }
-
   // Chart configuration
   const size = 400;
   const center = size / 2;
@@ -114,13 +137,6 @@ const RadarChartView = ({ elementScores }: RadarChartViewProps) => {
       return `${point.x},${point.y}`;
     })
     .join(" ");
-
-  const getScoreColor = (score: number) => {
-    if (score >= 80) return "#10b981";
-    if (score >= 60) return "#6366f1";
-    if (score >= 40) return "#f59e0b";
-    return "#ef4444";
-  };
 
   const averageScore = data.reduce((acc, d) => acc + d.score, 0) / data.length;
 
