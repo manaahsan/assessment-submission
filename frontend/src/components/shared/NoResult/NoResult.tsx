@@ -1,4 +1,6 @@
 import { ClipboardList } from "lucide-react";
+
+// css
 import './NoResult.css'
 
 const NoResults = () => {
